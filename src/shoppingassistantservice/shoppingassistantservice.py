@@ -67,7 +67,6 @@ def create_app():
         print("Beginning RAG call")
         prompt = request.json['message']
         prompt = unquote(prompt)
-        
         # Step 1 – Get a room description from Gemini-vision-pro
         llm_vision = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
         message = HumanMessage(
@@ -93,6 +92,7 @@ def create_app():
         print(f"Retrieved documents: {len(docs)}")
         #Prepare relevant documents for inclusion in final prompt
         relevant_docs = ""
+        talkTogemini()
         for doc in docs:
             doc_details = doc.to_json()
             print(f"Adding relevant document to prompt context: {doc_details}")
